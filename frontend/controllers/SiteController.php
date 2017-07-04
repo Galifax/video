@@ -75,6 +75,11 @@ class SiteController extends Controller
     {
         $model = Video::find()->all();
         return $this->render('index',compact('model'));
+        $video = new Video();
+        if ($video->load(Yii::$app->request->post())){
+            $video->likes =$video->$likes+1;
+            $video->save();
+        }
     }
 
     /**
